@@ -49,5 +49,11 @@ export class Node {
         }
         console.log(this.data)
     }
+
+    height( h=0){
+       const leftHeight = this.left ? this.left.height(h+1):h;
+       const rightHeight = this.right ? this.right.height(h+1):h;
+       return Math.max(leftHeight,rightHeight)
+    }
 }
 

@@ -25,5 +25,8 @@ export class Tree {
             this.root.postOrderTraversal()
         }
     }
+    findMaxHeight() {
+       return  this.root.height();
+    }
 
 }
