@@ -32,3 +32,12 @@ tree.preorderTraversal();
 
 
 console.log("height",tree.findMaxHeight())
+
+console.log("depth at 2",tree.getNodesAtDepth(2))
+
+// it should be child of 13
+tree.addNode(20)
+
+tree
+
+console.log(node.left.left.right)

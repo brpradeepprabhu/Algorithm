@@ -29,4 +29,16 @@ export class Tree {
        return  this.root.height();
     }
 
+    getNodesAtDepth(depth) {
+      return  this.root.getNodesAtDepth(depth)
+    }
+
+    addNode(data) {
+        this.root.addNode(data);
+    }
+
+    deleteNode(data){
+        this.root.deleteNode(data)
+    }
+
 }
