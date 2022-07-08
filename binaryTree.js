@@ -6,11 +6,11 @@ let node = new Node(50);
 node.left = new Node(25);
 node.right = new Node(75);
 
-node.left.left  = new Node(10);
+node.left.left = new Node(10);
 node.left.right = new Node(35)
 
 node.left.left.left = new Node(5);
-node.left.left.right  = new Node(13);
+node.left.left.right = new Node(13);
 
 
 node.left.right.left = new Node(30);
@@ -31,13 +31,35 @@ console.log(tree.search(15))
 tree.preorderTraversal();
 
 
-console.log("height",tree.findMaxHeight())
+console.log("height", tree.findMaxHeight())
 
-console.log("depth at 2",tree.getNodesAtDepth(2))
+console.log("depth at 2", tree.getNodesAtDepth(2))
 
 // it should be child of 13
-tree.addNode(20)
+tree.addNode(22)
 
-tree
+// let unbalanceLeftLeft = new Tree(new Node(30), 'unbalanced left left');
+//
+// unbalanceLeftLeft.root.left = new Node(20);
+// unbalanceLeftLeft.root.left.right = new Node(21);
+// unbalanceLeftLeft.root.left.left = new Node(10);
+// unbalanceLeftLeft.root.left.left.left = new Node(9);
+// unbalanceLeftLeft.root.left.left.right = new Node(11);
+// unbalanceLeftLeft.rebalance();
+// console.log("unbalanceRootLeft",unbalanceLeftLeft.root.data)
+// console.log("unbalanceRootLeft",unbalanceLeftLeft.root.left.data)
+// console.log("unbalanceRootLeft",unbalanceLeftLeft.root.right.data)
 
-console.log(node.left.left.right)
+
+let avlTree = new Tree(new Node(50), 'AVL Tree');
+avlTree.addNode(25);
+avlTree.addNode(75);
+avlTree.addNode(10);
+avlTree.addNode(35);
+avlTree.addNode(30);
+avlTree.addNode(5);
+avlTree.addNode(2);
+avlTree.addNode(1);
+
+
+console.log("avlTree ",avlTree.root.data)

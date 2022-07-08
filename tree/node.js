@@ -87,24 +87,18 @@ export class Node {
         }
         if (this.data > data) {
             if (!this.left) {
-                this.left = {
-                    data: data,
-                    left: null,
-                    right: null
-                }
+                this.left = new Node(data);
             } else {
                 this.left.addNode(data);
+                this.left = this.left.checkImbalanceExist();
             }
         }
         if (this.data < data) {
             if (!this.right) {
-                this.right = {
-                    data: data,
-                    left: null,
-                    right: null
-                }
+                this.right = new Node(data);
             } else {
                 this.right.addNode(data)
+                this.right = this.right.checkImbalanceExist();
             }
         }
 
@@ -139,8 +133,74 @@ export class Node {
         if (this.data < data && !this.right) {
             this.right = this.right.deleteNode(data);
         }
+
+        return this.checkImbalanceExist();
+    }
+
+    rotateRight() {
+        let pivot = this.left;
+        let attachNode = pivot.right;
+        this.left = attachNode;
+        pivot.right = this;
+        return pivot
+    }
+
+    rotateLeft() {
+        let pivot = this.right;
+        let attachNode = pivot.left;
+        this.right = attachNode
+        pivot.left = this;
+        return pivot;
+    }
+
+    getHeightDiff() {
+        let leftHeight = 0;
+        if (this.left) {
+            leftHeight = this.left.height(0);
+        }
+
+        let rightHeight = 0;
+        if (this.right != null) {
+            console.log(this.right)
+            rightHeight = this.right.height(0);
+        }
+        return leftHeight - rightHeight;
+    }
+
+    checkImbalanceExist() {
+        if (this.getHeightDiff() > 1) {
+            if (this.left.getHeightDiff() > 0) {
+                return this.rotateRight()
+            } else {
+                this.left = this.left.rotateLeft();
+                return this.rotateRight();
+            }
+        }
+
+        if (this.getHeightDiff() < -1) {
+            if (this.right.getHeightDiff() < 0) {
+                return this.rotateLeft()
+            } else {
+                this.right = this.right.rotateRight();
+                return this.rotateLeft();
+            }
+
+        }
         return this;
     }
+
+    rebalance() {
+        if (this.left) {
+            this.left.rebalance();
+            this.left = this.left.checkImbalanceExist()
+        }
+        if (this.right) {
+            this.right.rebalance();
+            this.right = this.right.checkImbalanceExist();
+        }
+        return this;
+    }
+
 
 
 }

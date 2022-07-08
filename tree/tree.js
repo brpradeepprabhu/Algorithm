@@ -25,20 +25,35 @@ export class Tree {
             this.root.postOrderTraversal()
         }
     }
+
     findMaxHeight() {
-       return  this.root.height();
+        return this.root.height();
     }
 
     getNodesAtDepth(depth) {
-      return  this.root.getNodesAtDepth(depth)
+        return this.root.getNodesAtDepth(depth)
     }
 
     addNode(data) {
         this.root.addNode(data);
+        this.root = this.root.checkImbalanceExist();
     }
 
-    deleteNode(data){
+    deleteNode(data) {
         this.root.deleteNode(data)
     }
 
+    rebalance() {
+        this.root.rebalance();
+        this.root = this.root.checkImbalanceExist();
+    }
+
+
+    addSpacing(times) {
+        let d = ' '
+        for (let i = 0; i < times; i++) {
+            d += " "
+        }
+        return d;
+    }
 }
